@@ -37,12 +37,43 @@ class MessageController extends Controller
 
     public function inbox() {
         
-        $messages = Message::where('receiver_id', Auth::user()->id)->get();
+        // $messages = Message::where('receiver_id', Auth::user()->id)->get();
+        $messages = Message::where('receiver_id', Auth::user()->id)->orderBy('created_at', 'desc')->get();
         
         foreach($messages as $message) {
             $user = User::where('id', $message->sender_id)->first();
         }
 
         return view('userInbox', compact('messages', 'user'));
+    }
+
+    public function showMsg($id) {
+
+        $message = Message::find($id);
+
+        $sender = User::where('id', $message->sender_id)->first();
+
+        return view('showMessage', compact('message', 'sender'));
+    }
+
+    public function replyMsg(Request $request, $id) {
+
+        $request->validate([
+            'title' => 'required',
+            'text' => 'required',
+            'sender_id' => 'required',
+            'receiver_id' => 'required',
+            'ad_id' => 'required'
+        ]);
+
+        $message = new Message();
+        $message->title = $request->title;
+        $message->text = $request->text;
+        $message->sender_id = $request->sender_id;
+        $message->receiver_id = $request->receiver_id;
+        $message->ad_id = $request->ad_id;
+        $message->save();
+        
+        return redirect()->back()->with('successReply', 'Vasa poruka je poslata.');
     }
 }

@@ -40,7 +40,7 @@
                             </td>
                             <!-- Message -->
                             <td>
-                                <a class="link" href="javascript: void(0)">
+                                <a class="link" href="{{route('user.showMessage', ['id' => $message->id])}}">
                                     <span class="badge badge-pill text-white font-medium badge-danger mr-2">Work</span>
                                     <span class="text-dark">{{$message->title}}-</span>
                                 </a>

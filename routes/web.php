@@ -25,6 +25,8 @@ Route::get('/singleAd/{id}', [AdController::class, 'singleAd'])->name('singleAd'
 
 Route::post('/sendMessage/{id}', [MessageController::class, 'sendMessage'])->name('sendMessage');
 Route::get('/user/inbox', [MessageController::class, 'inbox'])->name('user.inbox');
+Route::get('/user/inbox/{id}/showMessage', [MessageController::class, 'showMsg'])->name('user.showMessage');
+Route::post('/user/inbox/{id}/showMessage', [MessageController::class, 'replyMsg'])->name('user.showMessage');
 
 Route::get('/user', [UserController::class, 'index'])->name('userProfile');
 Route::get('/user/addDeposit', [UserController::class, 'showDepositForm'])->name('user.addDeposit');
