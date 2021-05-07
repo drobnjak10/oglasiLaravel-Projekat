@@ -44,6 +44,10 @@ class MessageController extends Controller
             $user = User::where('id', $message->sender_id)->first();
         }
 
+        if(!isset($user)) {
+            return view('emptyInbox');
+        }
+
         return view('userInbox', compact('messages', 'user'));
     }
 

@@ -50,6 +50,7 @@
                     <p class="m-3">{{$ad->body}}</p>
                     <a href="#" class="btn btn-primary">{{$ad->price}} RSD</a>
                     <a href="{{route('user.deleteAd', ['id' => $ad->id])}}" class="btn btn-danger">Delete</a>
+                    <a href="#" class="btn btn-warning">Views: {{$ad->views}}</a>
                 </div>
             </div>
         </div>

@@ -12,8 +12,6 @@ class AdController extends Controller
 {
     public function index() {
 
-        
-        
         if(isset(Auth::user()->id)) {
             $ads = Ad::where('user_id', '!=', Auth::user()->id)->get();
 
@@ -114,6 +112,9 @@ class AdController extends Controller
     public function singleAd($id) {
         $ad = Ad::find($id);
 
+        if(Auth::check() && Auth::user()->id !== $ad->user_id) {
+            $ad->increment('views');
+        }
 
         return view('singleAd', compact('ad'));
     }

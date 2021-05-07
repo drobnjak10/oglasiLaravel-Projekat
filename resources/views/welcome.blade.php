@@ -22,7 +22,8 @@
                     <div class="card-body">
                       <h5 class="card-title">{{$ad->title}}</h5>
                       <a href="#" class="btn btn-primary">Cena: {{$ad->price}}</a>
-                      <a href="{{route('singleAd', ['id' => $ad->id])}}" class="btn btn-primary float-right">Info</a>
+                      <a href="{{route('singleAd', ['id' => $ad->id])}}" class="btn btn-primary float-right">Info</a><br>
+                      <a href="" class="btn btn-warning mt-3">Views: {{$ad->views}}</a>
                     </div>
                   </div>
                 @endforeach
